@@ -9,5 +9,5 @@ VALUES
   ('As a registered user, I can login', 3, 'Iste doloribus illo perferendis. Ipsa et dolorum. Et deserunt porro et.'),
   ('When logged in, I can see my dashboard', 1, 'Quia doloremque eos culpa natus iusto in est aliquid.'),
   ('On my dashboard, I can sort my notes', 2, 'Aperiam in aut et aut quos. Totam sunt et. Nesciunt illo facere ut in cum unde aut iure esse.'),
-  ('As a logged in user, I check off my notes', 3, 'Culpa at animi aut sequi voluptatem nulla sint atque. Id quisquam error eos nemo qui earum.'),
+  ('As a logged in user, I check off my notes', 3, 'Culpa at animi aut sequi voluptatem nulla sint atque. Id quisquam error eos nemo qui earum.')
 ;
