@@ -1,0 +1,47 @@
+{
+    "name": "express-boilerplate",
+    "version": "1.0.0",
+    "description": "This is a boilerplate project used for starting new projects!",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "mocha --require test/setup.js",
+        "dev": "nodemon src/server.js",
+        "migrate": "postgrator --config postgrator-config.js",
+        "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate",
+        "start": "node src/server.js",
+        "predeploy": "npm audit && npm run migrate:production",
+        "deploy": "git push heroku master"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cantuus/express-boilerplate.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cantuus/express-boilerplate.git"
+    },
+    "homepage": "https://github.com/cantuus/express-boilerplate.git",
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^6.2.2",
+        "nodemon": "^1.19.4",
+        "postgrator-cli": "^3.2.0",
+        "serve": "^11.2.0",
+        "supertest": "^4.0.2"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "helmet": "^3.21.2",
+        "knex": "^0.20.1",
+        "morgan": "^1.9.1",
+        "pg": "^7.12.1",
+        "prop-types": "^15.7.2",
+        "xss": "^1.0.6"
+    }
+}
