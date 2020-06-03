@@ -48,4 +48,39 @@ bookmarksRouter
     });
 
 
+bookmarksRouter
+    .route('/:id')
+    .all((req, res, next) => {
+        BookmarksService.getById(
+            req.app.get('db'),
+            req.params.id
+        )
+            .then(bookmark => {
+                if (!bookmark) {
+                    return res.status(404).json({
+                        error: { message: `Bookmark doesn't exist` }
+                    })
+                }
+
+                res.bookmark = bookmark
+                next()
+                res.json(serializeBookmark(bookmark))
+            })
+            .catch(next)
+    })
+    .get((req, res, next) => {
+        res.json(serializeBookmark(res.bookmark))
+    })
+    .delete((req, res, next) => {
+        BookmarksService.deleteBookmark(
+            req.app.get('db'),
+            req.params.id
+        )
+            .then(bookmarks => {
+                res.status(204).json(bookmarks)
+            })
+            .catch(next)
+    })
+
+
 module.exports = bookmarksRouter;
