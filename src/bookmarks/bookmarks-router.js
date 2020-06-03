@@ -22,6 +22,30 @@ bookmarksRouter
             })
             .catch(next)
     })
+    .post(jsonParser, (req, res, next) => {
+        const { name, folder_id, content } = req.body;
+        const newBookmark = { name, folder_id, content }
+
+        for (const [key, value] of Object.entries(newBookmark)) {
+            if (value == null) {
+                return res.status(400).json({
+                    error: { message: `Missing '${key}' in request body` }
+                })
+            }
+        }
+
+        BookmarksService.insertBookmark(
+            req.app.get('db'),
+            newBookmark
+        )
+            .then(bookmark => {
+                res
+                    .status(201)
+                    .location(path.posix.join(req.originalUrl + `/${bookmark.id}`))
+                    .json(serializeBookmark(bookmark))
+            })
+            .catch(next)
+    });
 
 
 module.exports = bookmarksRouter;
