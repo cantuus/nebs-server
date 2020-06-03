@@ -17,8 +17,8 @@ bookmarksRouter
     .get((req, res, next) => {
         const knexInstance = req.app.get('db')
         BookmarksService.getAllBookmarks(knexInstance)
-            .then(notes => {
-                res.json(notes.map(serializeBookmark))
+            .then(bookmarks => {
+                res.json(bookmarks.map(serializeBookmark))
             })
             .catch(next)
     })
@@ -81,6 +81,29 @@ bookmarksRouter
             })
             .catch(next)
     })
+    .patch(jsonParser, (req, res, next) => {
+        const { name, folder_id, content } = req.body
+        const bookmarkToUpdate = { name, folder_id, content }
+
+        const numberOfValues = Object.values(bookmarkToUpdate).filter(Boolean).length
+        if (numberOfValues === 0)
+            return res.status(400).json({
+                error: {
+                    message: `Request body must contain name, folder_id, and content`
+                }
+            })
+
+        BookmarksService.updateBookmark(
+            req.app.get('db'),
+            req.params.id,
+            bookmarkToUpdate
+        )
+            .then(numRowsAffected => {
+                res.status(204).end()
+            })
+            .catch(next)
+
+    });
 
 
 module.exports = bookmarksRouter;
