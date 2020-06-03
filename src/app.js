@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use('/api/folders', foldersRouter);
-// app.use('/api/bookmarks', bookmarksRouter);
+app.use('/api/bookmarks', bookmarksRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, boilerplate!')
