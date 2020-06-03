@@ -23,6 +23,12 @@ const FoldersService = {
             .first()
     },
 
+    deleteFolder(knex, id) {
+        return knex('folders')
+            .where({ id })
+            .delete()
+    },
+
 
 }
 
