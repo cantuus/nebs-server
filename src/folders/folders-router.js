@@ -20,5 +20,32 @@ foldersRouter
             })
             .catch(next)
     })
+    .post(jsonParser, (req, res, next) => {
+        const { name } = req.body;
+        const newFolder = { name };
+
+        if (!name) {
+            return res.status(400).json({
+                error: {
+                    message: 'Missing Folder name'
+                }
+            });
+        }
+
+        console.log('tell me now');
+        console.log(newFolder);
+
+        FoldersService.insertFolder(
+            req.app.get('db'),
+            newFolder
+        )
+            .then(folder => {
+                res
+                    .status(201)
+                    .location(path.posix.join(req.originalUrl + `/${folder.id}`))
+                    .json(serializeFolders(folder))
+            })
+            .catch(next)
+    });
 
 module.exports = foldersRouter;
