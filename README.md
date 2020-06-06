@@ -61,7 +61,7 @@ Deletes a folder
 
 ~~____________________________________________________~~
 
-## /api/game/:folder_id - PATCH
+## /api/folder/:folder_id - PATCH
 Update the name of a folder
 
 **Request Format**:
@@ -137,15 +137,17 @@ Adds a new bookmark
 ```
 ~~____________________________________________________~~
 
-## /api/folders/:bookmark_id - DELETE
+## /api/bookmarks/:bookmark_id - DELETE
 Deletes a bookmark
 
 **Code** : '204 No response'
 
 ~~____________________________________________________~~
 
-## /api/game/:folder_id - PATCH
+## /api/bookmarks/:bookmark_id - PATCH
 Update a bookmark
+
+> **Code** : `200 OK`
 
 **Request Format**:
 ```json
@@ -155,8 +157,6 @@ Update a bookmark
     "content": "is fun"
 }
 ```
-> **Code** : `200 OK`
-
 **Success Response**
 
 ```json
