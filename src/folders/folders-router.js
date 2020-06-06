@@ -32,9 +32,6 @@ foldersRouter
             });
         }
 
-        console.log('tell me now');
-        console.log(newFolder);
-
         FoldersService.insertFolder(
             req.app.get('db'),
             newFolder
