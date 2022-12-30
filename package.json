@@ -27,7 +27,7 @@
     "homepage": "https://github.com/cantuus/express-boilerplate.git",
     "devDependencies": {
         "chai": "^4.2.0",
-        "mocha": "^6.2.2",
+        "mocha": "^10.2.0",
         "nodemon": "^1.19.4",
         "postgrator-cli": "^3.2.0",
         "serve": "^11.2.0",
